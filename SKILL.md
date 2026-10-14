@@ -1,6 +1,6 @@
 ---
 name: figma-design-skill
-version: 2.4.0
+version: 2.4.2
 description: 给 AI 用的软件界面设计规范 skill，蓝本是 Claude 官方 UI kit——取出 Claude 的 UI 细节（变量 token、组件几何、动效数值、硬规则），并照着它直接改或做软件页面：产出可落地的代码（HTML/CSS/组件）或逐层改稿方案。当用户要求"按 Claude 的界面风格做/改页面""提取 Claude UI 的细节/token/组件数值"时使用。
 ---
 
@@ -11,7 +11,7 @@ description: 给 AI 用的软件界面设计规范 skill，蓝本是 Claude 官�
 | 项 | 值 |
 |---|---|
 | 蓝本 | Claude 官方 UI kit：`references/anthropic-mcp-apps-design.md`（颜色 37 / 字体 29 / 几何 15 个变量 + 官方指南硬规则） |
-| 次选蓝本 | `references/claude-design-system-storybook.md`——第三方逆向的 Claude 桌面端：几何 / 布局 / 动效实现层可用（圆角阶梯、控件高度、双环阴影、11 个关键帧、弹簧参数），**不是官方来源**，用了要标明 |
+| 次选蓝本 | `references/claude-design-system-storybook.md`——第三方逆向的 Claude 桌面端 Storybook，覆盖 7 个基础规范、7 个组件和 3 个动效实验；圆角、高度、阴影、排版、图标及动效实现可补官方空白，**不是官方来源**，用了要标明 |
 | 目标 | 你要改、或要做的那个软件页面 |
 | 交付 | 页面代码（HTML+CSS / 组件）或逐层改稿 diff；用户只要细节时，给细节表 |
 | 底线 | 页面里每个数值，要么来自蓝本实读，要么显式标"蓝本没有，自定" |
@@ -33,6 +33,14 @@ description: 给 AI 用的软件界面设计规范 skill，蓝本是 Claude 官�
 | 间距 | **没有 token**，内嵌在组件 Auto layout 里（如 Inline card：gap 128 / padding 128） | 组件级 gap / padding，别硬造一套 spacing 体系 |
 | 动效 | 官方 UI kit **没有**任何 prototype 交互 | 要曲线 / 关键帧就取次选蓝本，或自定并标明 |
 | 硬规则 | 官方指南的九条（内联卡片、移动端、视觉、动效、字体） | 直接当约束写进页面 |
+
+网页蓝本取值按源码优先：读取 Storybook 的内联 CSS / JSX，再用页面 DOM 核对条目与展示值；不要把站点的 `Verified from Claude.app`、`100% Fidelity` 或 `AST-Extracted` 徽标当作官方证据。具体 token、组件与动效值见次选蓝本参考文件。
+
+### 目标项目字体默认值
+
+- 英文：`Inter, sans-serif`
+- 中文：`Inter, "Source Han Sans SC", "Noto Sans SC", sans-serif`（思源黑体 / Noto Sans SC）
+- 这是目标项目的字体偏好，不是 Claude 官方 UI kit 的字体 token；若目标项目已有字体规范，沿用项目规范。
 
 ## 核心认知：Figma 内容分三层，取法完全不同
 

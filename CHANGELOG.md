@@ -1,5 +1,14 @@
 # 修订记录
 
+## 2.4.2 · 2026-10-14
+
+- `SKILL.md`、`README.md`：明确第三方 Storybook 的覆盖范围和网页蓝本的源码优先、DOM 核对及徽标非官方证据规则。
+- `references/claude-design-system-storybook.md`：将提取日期改为本次核对日期，并记录源码与页面条目的交叉核对方式。
+
+## 2.4.1 · 2026-10-14
+
+- `SKILL.md`、`README.md`：将目标页面默认字体设为英文 Inter、中文 Inter + 思源黑体（Source Han Sans SC / Noto Sans SC），并与 Claude 官方蓝本字体 token 区分。
+
 ## 2.4.0 · 2026-10-14
 
 - `SKILL.md`：将图标和配图的默认制作方式改为生图工具生成栅格图像、裁切后入库；仅在生图不可用或无法满足精度要求时考虑 SVG。

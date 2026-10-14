@@ -4,7 +4,7 @@
 <sub>An agent skill that turns the Claude UI kit into runnable page code — not a design appreciation.</sub></p>
 
 <p align="center">
-  <a href="SKILL.md"><img alt="version" src="https://img.shields.io/badge/version-2.4.0-D97757?style=flat-square"></a>
+  <a href="SKILL.md"><img alt="version" src="https://img.shields.io/badge/version-2.4.2-D97757?style=flat-square"></a>
   <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-2F855A?style=flat-square"></a>
   <a href="SKILL.md"><img alt="skill" src="https://img.shields.io/badge/type-agent%20skill-4B5563?style=flat-square"></a>
   <a href="references/anthropic-mcp-apps-design.md"><img alt="blueprint" src="https://img.shields.io/badge/blueprint-Claude%20UI%20kit-2563EB?style=flat-square"></a>
@@ -23,7 +23,7 @@
 | 2 | **交付是页面** | CSS 变量 + 字面量的可运行代码、组件代码，或逐层改稿 diff——不是设计赏析，也不是"看着差不多"的临摹 |
 | 3 | **蓝本没覆盖的层要明说** | 官方 UI kit **没有**间距 token、**没有**任何原型动效。要用就写明取自次选蓝本（社区逆向）或标"自定"，不借蓝本的名义写自己的数 |
 
-**当前版本：`2.4.0`** —— 唯一权威出处是 [`SKILL.md`](SKILL.md) frontmatter 的 `version` 字段；改版本号时三处同步，见[维护约定](#维护约定)。
+**当前版本：`2.4.2`** —— 唯一权威出处是 [`SKILL.md`](SKILL.md) frontmatter 的 `version` 字段；改版本号时三处同步，见[维护约定](#维护约定)。
 
 ## 目录
 
@@ -70,7 +70,7 @@
 | 文件 | 定位 |
 |---|---|
 | [`references/anthropic-mcp-apps-design.md`](references/anthropic-mcp-apps-design.md) | **主蓝本**：Claude 官方 UI kit 的全套变量 token、组件 Auto layout 实测、官方指南硬规则 |
-| [`references/claude-design-system-storybook.md`](references/claude-design-system-storybook.md) | **次选蓝本**：第三方逆向的 Claude 桌面端。**社区来源，非官方**；只补官方缺的层（像素几何、11 个关键帧、弹簧参数），与官方冲突时以官方为准 |
+| [`references/claude-design-system-storybook.md`](references/claude-design-system-storybook.md) | **次选蓝本**：第三方逆向的 Claude 桌面端 Storybook，收录 7 个基础规范、7 个组件、3 个动效实验。**社区来源，非官方**；只补官方缺的层，与官方冲突时以官方为准 |
 | [`references/browser-recipes.md`](references/browser-recipes.md) | 可复制的 DOM 选择器与操作序列，**代码口径的权威来源** |
 
 蓝本里有什么，一层一层对着看：
@@ -83,6 +83,8 @@
 | 间距 | **没有 token**，内嵌在组件 Auto layout 里（如 Inline card：gap 128 / padding 128） | 组件级 gap / padding，别硬造一套 spacing 体系 |
 | 动效 | 官方 UI kit **没有任何 prototype 交互** | 要曲线 / 关键帧就取次选蓝本，或自定并标明 |
 | 硬规则 | 官方指南的九条（内联卡片、移动端、视觉、动效、字体） | 直接当约束写进页面 |
+
+目标页面默认字体偏好：英文用 `Inter`；中文用 `Inter` + 思源黑体（`Source Han Sans SC` / `Noto Sans SC`）。这是项目偏好，不属于 Claude 蓝本 token；目标项目已有字体规范时优先沿用。
 
 ## 工作原理
 

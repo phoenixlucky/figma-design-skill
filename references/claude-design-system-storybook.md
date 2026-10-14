@@ -13,8 +13,8 @@
 | 自述版本 | `Claude Desktop v1.0` |
 | 页面自称 | canvas 徽标 `Verified from Claude.app`；footer `REA Extracted Tokens` / `100% Fidelity`；Spring Lab 徽标 `AST-Extracted` |
 | 技术栈 | Tailwind CDN + React 18 UMD + Babel Standalone（**内联 `<script type="text/babel">`，全部内容在一个 HTML 里**） |
-| 提取日期 | 2026-10-19 |
-| 提取方式 | 下载 HTML 源码读内联 JSX（**没有开浏览器截图**） |
+| 提取日期 | 2026-10-14（复核） |
+| 提取方式 | 下载当前 HTML 读取内联 CSS / JSX，并用浏览器 DOM 核对 17 个页面的目录与展示内容（不依赖截图识字） |
 | 规模 | 3 大类 / 17 个 story：FOUNDATIONS 7 + COMPONENTS 7 + MOTION LAB 3 |
 
 ## 提取方法：源码即权威（与 Figma 相反）
