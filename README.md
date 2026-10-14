@@ -4,7 +4,7 @@
 <sub>An agent skill that turns the Claude UI kit into runnable page code — not a design appreciation.</sub></p>
 
 <p align="center">
-  <a href="SKILL.md"><img alt="version" src="https://img.shields.io/badge/version-2.0.0-D97757?style=flat-square"></a>
+  <a href="SKILL.md"><img alt="version" src="https://img.shields.io/badge/version-2.4.0-D97757?style=flat-square"></a>
   <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-2F855A?style=flat-square"></a>
   <a href="SKILL.md"><img alt="skill" src="https://img.shields.io/badge/type-agent%20skill-4B5563?style=flat-square"></a>
   <a href="references/anthropic-mcp-apps-design.md"><img alt="blueprint" src="https://img.shields.io/badge/blueprint-Claude%20UI%20kit-2563EB?style=flat-square"></a>
@@ -23,7 +23,7 @@
 | 2 | **交付是页面** | CSS 变量 + 字面量的可运行代码、组件代码，或逐层改稿 diff——不是设计赏析，也不是"看着差不多"的临摹 |
 | 3 | **蓝本没覆盖的层要明说** | 官方 UI kit **没有**间距 token、**没有**任何原型动效。要用就写明取自次选蓝本（社区逆向）或标"自定"，不借蓝本的名义写自己的数 |
 
-**当前版本：`2.0.0`** —— 唯一权威出处是 [`SKILL.md`](SKILL.md) frontmatter 的 `version` 字段；改版本号时三处同步，见[维护约定](#维护约定)。
+**当前版本：`2.4.0`** —— 唯一权威出处是 [`SKILL.md`](SKILL.md) frontmatter 的 `version` 字段；改版本号时三处同步，见[维护约定](#维护约定)。
 
 ## 目录
 
@@ -46,6 +46,8 @@
 | **改稿 diff** | 元素 / 现值 / 改成 / 蓝本依据，四列一处改动；密集处附最小代码片段 | 不动结构也能量齐细节 |
 | **映射表** | 目标页面维度 / 蓝本取值 / 落到页面的值，三列一页 | 看清对齐了哪些层 |
 | **细节表** | 只要细节时给：token 表 / 硬规则 / 蓝本里没有的 | 自己拿去算 |
+
+图标与配图统一放在 `public/assets/` 对应目录。默认用生图工具绘制，裁切为可直接引用的图片资源后收入项目资源库；只有生图不支持或无法满足精度要求时才考虑 SVG。社区逆向的图标尺寸只能作为有来源标注的参考，不属于官方 token。
 
 ## 触发场景
 
