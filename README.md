@@ -4,7 +4,7 @@
 <sub>An agent skill that turns the Claude UI kit into runnable page code — not a design appreciation.</sub></p>
 
 <p align="center">
-  <a href="SKILL.md"><img alt="version" src="https://img.shields.io/badge/version-2.5.0-D97757?style=flat-square"></a>
+  <a href="SKILL.md"><img alt="version" src="https://img.shields.io/badge/version-2.16.0-D97757?style=flat-square"></a>
   <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-2F855A?style=flat-square"></a>
   <a href="SKILL.md"><img alt="skill" src="https://img.shields.io/badge/type-agent%20skill-4B5563?style=flat-square"></a>
   <a href="references/anthropic-mcp-apps-design.md"><img alt="blueprint" src="https://img.shields.io/badge/blueprint-Claude%20UI%20kit-2563EB?style=flat-square"></a>
@@ -19,11 +19,11 @@
 
 | # | 定位 | 含义 |
 |---|---|---|
-| 1 | **蓝本是 Claude** | 颜色 37 / 字体 29 / 几何 15 个变量，加官方指南的九条硬规则，已经取好放在仓库里（[`references/anthropic-mcp-apps-design.md`](references/anthropic-mcp-apps-design.md)），不用再翻一遍 Figma |
+| 1 | **蓝本是 Claude** | Figma UI kit 的颜色 37 / 字体 29 / 几何 15 个变量，加 MCP Apps 官方指南的交互、显示模式、移动、视觉、可达性与安全规范；可迁移设计原则写在主 `SKILL.md` 中 |
 | 2 | **交付是页面** | CSS 变量 + 字面量的可运行代码、组件代码，或逐层改稿 diff——不是设计赏析，也不是"看着差不多"的临摹 |
 | 3 | **蓝本没覆盖的层要明说** | 官方 UI kit **没有**间距 token、**没有**任何原型动效。要用就写明取自次选蓝本（社区逆向）或标"自定"，不借蓝本的名义写自己的数 |
 
-**当前版本：`2.5.0`** —— 唯一权威出处是 [`SKILL.md`](SKILL.md) frontmatter 的 `version` 字段；改版本号时三处同步，见[维护约定](#维护约定)。
+**当前版本：`2.16.0`** —— 唯一权威出处是 [`SKILL.md`](SKILL.md) frontmatter 的 `version` 字段；改版本号时三处同步，见[维护约定](#维护约定)。
 
 ## 目录
 
@@ -47,13 +47,13 @@
 | **映射表** | 目标页面维度 / 蓝本取值 / 落到页面的值，三列一页 | 看清对齐了哪些层 |
 | **细节表** | 只要细节时给：token 表 / 硬规则 / 蓝本里没有的 | 自己拿去算 |
 
-图标与配图统一放在 `public/assets/` 对应目录。默认用生图工具绘制，裁切为可直接引用的图片资源后收入项目资源库；只有生图不支持或无法满足精度要求时才考虑 SVG。社区逆向的图标尺寸只能作为有来源标注的参考，不属于官方 token。
+功能图标优先复用目标项目图标库；Claude 宿主内嵌 App 使用匹配宿主颜色 token 的单色描边图标，不能让图标承载唯一信息。生图工具用于配图、插画等视觉资产，不生成交互控件图标。社区逆向的图标尺寸仅作有来源标注的参考，不属于官方 token。
 
 ## 触发场景
 
 - 要按 Claude 的界面风格**做新页面**或**改造现有页面**（配色、字号、圆角、层级、动效对齐）
 - 用户贴 `figma.com/design/…`、`figma.com/community/file/…` 链接，要求"提取设计细节 / 规范 / token / 设计理念"
-- 用户要学习或应用 Claude 的视觉与交互原则：先读 `references/claude-design-principles.md`
+- 用户要学习或应用 Claude 的视觉与交互原则：直接使用主 `SKILL.md` 的「Claude 设计思想」节
 - 用户贴**网页版**设计系统（Storybook 站点、逆向文档 SPA）——取法与 Figma 相反：**源码 > DOM > 截图**
 - 要校某个具体数值：圆角阶梯、控件高度、双环阴影、行高节奏、字重、弹簧参数
 
@@ -61,20 +61,19 @@
 
 | 做 | 不做 |
 |---|---|
-| 呈现 Claude 的 token / 组件几何 / 动效数值 / 硬规则 | 不做设计赏析、不评"好不好看" |
+| 应用 Claude 的设计原则，呈现 token / 组件几何 / 动效数值 / 硬规则 | 不只停留在抽象赏析，原则要落到页面结构和交互 |
 | 照着蓝本**改**已有页面、**做**新页面 | 不发明蓝本没有的具体数值（要就标"自定"） |
 | 交可运行代码或逐层改稿 diff | 不交"看着差不多"的临摹稿 |
 | 官方与社区来源分列、冲突以官方为准 | 不把社区逆向的数字混进官方表里 |
 
 ## 设计思想与蓝本
 
-设计时先用 [`references/claude-design-principles.md`](references/claude-design-principles.md) 判断视觉层级、边界、动效和会话交互；落精确值时使用下列蓝本，并保留来源边界。
+Claude 的视觉层级、边界、动效和会话交互原则已直接写在主 `SKILL.md` 的「Claude 设计思想」节。先按原则设计，再用下列蓝本核对精确值和来源。
 
 | 文件 | 定位 |
 |---|---|
 | [`references/anthropic-mcp-apps-design.md`](references/anthropic-mcp-apps-design.md) | **主蓝本**：Claude 官方 UI kit 的全套变量 token、组件 Auto layout 实测、官方指南硬规则 |
 | [`references/claude-design-system-storybook.md`](references/claude-design-system-storybook.md) | **次选蓝本**：第三方逆向的 Claude 桌面端 Storybook，收录 7 个基础规范、7 个组件、3 个动效实验。**社区来源，非官方**；只补官方缺的层，与官方冲突时以官方为准 |
-| [`references/claude-design-principles.md`](references/claude-design-principles.md) | **设计思想索引**：把 Claude 官方产品呈现出的设计原则转成可执行问题；参考 `open-claude-ui` 的产品观察和组件例子，具体数值仍以官方 UI kit / 指南为准 |
 | [`references/browser-recipes.md`](references/browser-recipes.md) | 可复制的 DOM 选择器与操作序列，**代码口径的权威来源** |
 
 蓝本里有什么，一层一层对着看：
@@ -86,7 +85,7 @@
 | 几何 | 15 个变量：桌面圆角 4 / 6 / 8 / 10 / 12 / 999；移动独立梯度 0 / 2 / 4 / 8 / 10 / 14 / 24 / 9999；描边 `0.5` 发丝线 | `border-radius` / `border-width` |
 | 间距 | **没有 token**，内嵌在组件 Auto layout 里（如 Inline card：gap 128 / padding 128） | 组件级 gap / padding，别硬造一套 spacing 体系 |
 | 动效 | 官方 UI kit **没有任何 prototype 交互** | 要曲线 / 关键帧就取次选蓝本，或自定并标明 |
-| 硬规则 | 官方指南的九条（内联卡片、移动端、视觉、动效、字体） | 直接当约束写进页面 |
+| 硬规则 | MCP Apps 官方指南中的对话交互边界、显示模式、移动端、视觉、可达性、主题与内容安全约束 | 只在宿主内嵌 App 场景直接执行 |
 
 目标页面默认字体偏好：英文用 `Inter`；中文用 `Inter` + 思源黑体（`Source Han Sans SC` / `Noto Sans SC`）。这是项目偏好，不属于 Claude 蓝本 token；目标项目已有字体规范时优先沿用。
 
@@ -131,7 +130,6 @@ Figma 文件 / 网页版设计系统
 SKILL.md                                      # 主文件：拿蓝本 → 建映射表 → 出页面（流程 / 落值口径 / 自检 / 失败降级 / 陷阱清单）
 references/anthropic-mcp-apps-design.md       # 主蓝本：Claude 官方 UI kit 的 token、组件实测、硬规则
 references/claude-design-system-storybook.md  # 次选蓝本：社区逆向的 Claude 桌面端，补几何与动效
-references/claude-design-principles.md        # 设计思想索引：Claude 的视觉层级与交互原则
 references/browser-recipes.md                 # 可复制的 DOM 选择器与操作序列（代码口径的权威来源）
 README.md                                     # 本文件
 CHANGELOG.md                                  # 修订记录

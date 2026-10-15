@@ -10,7 +10,8 @@
 | Community 页 | https://www.figma.com/community/file/1597641111449594397/mcp-apps-for-claude |
 | 提取用链接 | `https://www.figma.com/design/fboETg7aUHxMZmXXTNRbjq/MCP-Apps-for-Claude--Community-?node-id=849-19283&view=variables` |
 | 官方指南 | https://claude.com/docs/connectors/building/mcp-apps/design-guidelines （`.md` 后缀可取纯文本） |
-| 提取日期 | 2026-10-14 |
+| Figma 变量实读日期 | 2026-10-14 |
+| 官方在线指南复核日期 | 2026-10-15 |
 | 提取方式 | 本地 Chrome MCP：读变量面板 DOM + 截图看画布 |
 
 文件共 **3 个变量集合**（Border 15 / Colors 37 / Typography 29）和 **14 个页面**：
@@ -152,16 +153,25 @@
 
 **移动端**
 - 点击目标 ≥ **44pt**
-- 不占满宽度不做横向滚动
+- Inline Card 在对话中按可用宽度铺满，不产生横向溢出；横向浏览使用 Inline Carousel，不能把 Carousel 规则误套到 Inline Card
 - 尊重 `hostContext.safeAreaInsets.{top,right,bottom,left}`（px 值），作为根容器 padding 或滚动容器的 `scroll-padding`
 - 内联 app 的垂直滚动手势交给会话滚动，别自己抢
 - 需要独立纵向滚动区就请求 fullscreen，而不是内联
 - `_meta.ui.prefersBorder`：不设时 web 无边框、mobile 有边框；无边框模式要自己扛 safeArea
 
+**Inline Carousel 与 Fullscreen**
+- Carousel 用于可比较项目，3–8 项；每卡片含图像、标题、最多三行元数据和可选的一个 CTA；尺寸、视觉层级一致；移动端可横向滑动并露出下一卡边缘。
+- Fullscreen 用于需要更大空间的复杂任务；App 提供进入按钮，宿主标题栏提供关闭；聊天输入保持可用；用可折叠侧栏、标签或分页代替浮动面板。
+- 在 `ui/initialize` 声明实际支持的 `inline`、`fullscreen`、`pip` 模式；通过 `ui/request-display-mode` 请求切换。
+- 移动端 App 填满宿主容器宽度，从 320px 起响应；使用容器查询与 `hostContext`，不要依赖固定 viewport 断点。安全区在 Web / 桌面也可能因宿主输入框覆盖而需要考虑。
+
 **视觉**
 - **只用三级字号 + 两档字重（regular / emphasized）**
 - 结构性元素（背景、文字、边框、图标）一律用宿主 token，**不硬编码颜色**；只允许在 accent / 品牌色上表达自己
 - 明暗两套都要测；宿主 token 自动适配
+- 图标用单色描边并匹配宿主图标颜色；图标辅助理解，不承载唯一信息。
+- 保持宽松且有逻辑的间距；官方指南给的是定性原则，不提供数值 spacing token。
+- 满足 WCAG AA 对比，支持键盘操作，为视觉信息提供文本替代，并用辅助技术检查。
 
 **动效/加载**
 - 内联卡片展开到全屏用平滑过渡，且要有明确的可展开提示
@@ -170,6 +180,23 @@
 
 **字体**
 - Figma 文件用 Anthropic Sans / Anthropic Serif；运行时宿主通过 style variables 提供 Anthropic Sans
+
+**交互边界与安全**
+- 直接操作已展示内容（筛选、排序、选择、展开、执行已准备动作）属于 App；自由文本、追问、修改请求和跨主题导航使用 Claude 对话输入。
+- 外部 origin 默认阻止；仅通过 `_meta.ui.csp` 声明需要的连接、资源或基础 URI 域。`frameDomains` 对第三方 iframe 有额外安全审查限制。
+
+## 官方来源差异（2026-10-15 复核）
+
+当前 Anthropic 在线指南与 2026-10-14 实读的 Figma Community UI kit 在若干 token 名和值上并不一致。两者都要保留各自来源，不将表格拼成一份“统一官方值”：
+
+| 维度 | Figma UI kit 实读 | 当前在线指南 | 使用口径 |
+|---|---|---|---|
+| Text LG | 18px；行高 25px | 20px；行高 1.25 | 按目标运行时选择对应来源；不要把一个来源的字号与另一个来源的行高拼接 |
+| Mono 字体 | JetBrains Mono | `ui-monospace, monospace` | 设计文件字体与宿主运行时 token 分列 |
+| Danger 背景 | `#B53333` / `#DD5353` | `#F7ECEC` / `#602A28` | 语义 token 同名不保证颜色相同；以对应运行时宿主变量为准 |
+| 间距 | 没有数字化 spacing / gap 变量；组件 Auto layout 可实读间距 | 只给“留白充足、分组有逻辑”的定性原则 | 不虚构官方 spacing token；从具体组件或目标项目取值 |
+
+内嵌 App 必须优先消费 Claude 运行时传入的 style variables；本地 Figma 变量适合核对设计文件，不得覆盖运行时 token 的适配职责。
 
 ---
 
