@@ -1,7 +1,7 @@
 ---
 name: figma-design-skill
-version: 2.4.2
-description: 给 AI 用的软件界面设计规范 skill，蓝本是 Claude 官方 UI kit——取出 Claude 的 UI 细节（变量 token、组件几何、动效数值、硬规则），并照着它直接改或做软件页面：产出可落地的代码（HTML/CSS/组件）或逐层改稿方案。当用户要求"按 Claude 的界面风格做/改页面""提取 Claude UI 的细节/token/组件数值"时使用。
+version: 2.5.0
+description: 给 AI 用的软件界面设计规范 skill，蓝本是 Claude 官方 UI kit——学习 Claude 的设计原则，提取 UI 细节（变量 token、组件几何、动效数值、硬规则），并照着它直接改或做软件页面：产出可落地的代码（HTML/CSS/组件）或逐层改稿方案。当用户要求"按 Claude 的界面风格做/改页面""提取 Claude UI 的细节/token/组件数值/设计理念"时使用。
 ---
 
 # 照 Claude 的 UI 细节改 / 做软件页面
@@ -10,6 +10,7 @@ description: 给 AI 用的软件界面设计规范 skill，蓝本是 Claude 官�
 
 | 项 | 值 |
 |---|---|
+| 设计思想 | `references/claude-design-principles.md`：Claude 官方界面呈现出的视觉与交互原则，适用于设计方向判断 |
 | 蓝本 | Claude 官方 UI kit：`references/anthropic-mcp-apps-design.md`（颜色 37 / 字体 29 / 几何 15 个变量 + 官方指南硬规则） |
 | 次选蓝本 | `references/claude-design-system-storybook.md`——第三方逆向的 Claude 桌面端 Storybook，覆盖 7 个基础规范、7 个组件和 3 个动效实验；圆角、高度、阴影、排版、图标及动效实现可补官方空白，**不是官方来源**，用了要标明 |
 | 目标 | 你要改、或要做的那个软件页面 |
@@ -19,6 +20,7 @@ description: 给 AI 用的软件界面设计规范 skill，蓝本是 Claude 官�
 ## 何时使用
 
 - 要按 Claude 的界面风格**做新页面**，或**改造现有页面**（配色、字号、圆角、层级、动效对齐）
+- 要提炼或应用 Claude 的设计理念、视觉层级和交互取舍——先读 `references/claude-design-principles.md`
 - 用户贴 Figma 链接（`figma.com/design/...` 或 `figma.com/community/file/...`），要求"提取设计细节""看它藏了什么规范""导出 token"
 - 用户贴的是**网页**版设计系统（Storybook 站点、把某产品的 UI 逆向成文档的 SPA）——取法与 Figma 相反：**源码 > DOM > 截图**，先读 `references/claude-design-system-storybook.md` 的"提取方法"节
 - 要校某个具体数值：圆角阶梯、控件高度、双环阴影、行高节奏、字重、弹簧参数
@@ -35,6 +37,8 @@ description: 给 AI 用的软件界面设计规范 skill，蓝本是 Claude 官�
 | 硬规则 | 官方指南的九条（内联卡片、移动端、视觉、动效、字体） | 直接当约束写进页面 |
 
 网页蓝本取值按源码优先：读取 Storybook 的内联 CSS / JSX，再用页面 DOM 核对条目与展示值；不要把站点的 `Verified from Claude.app`、`100% Fidelity` 或 `AST-Extracted` 徽标当作官方证据。具体 token、组件与动效值见次选蓝本参考文件。
+
+做设计判断时先读 `references/claude-design-principles.md`，把 Claude 的表面层级、边界克制、交互反馈、流式阅读和输入容错作为整体原则；需要具体数值时仍按来源表核对，不从理念笔记反推精确 token。
 
 ### 目标项目字体默认值
 
@@ -288,6 +292,7 @@ description: 给 AI 用的软件界面设计规范 skill，蓝本是 Claude 官�
 |---|---|
 | `references/anthropic-mcp-apps-design.md` | **主蓝本**：Claude 官方 UI kit 的全套变量 token、组件 Auto layout 实测、官方指南硬规则、动效缺失情况 |
 | `references/claude-design-system-storybook.md` | **次选蓝本**：第三方逆向的「CDS Storybook」站点的 token / 组件规格 / 关键帧 / 弹簧参数。**社区来源，非官方**，只补官方空白处。**来源是网页而非 Figma 时，先读这份的"提取方法"节** |
+| `references/claude-design-principles.md` | **设计思想索引**：把 Claude 官方产品呈现出的视觉与交互原则整理成可执行判断；引用用户提供的 `open-claude-ui` 作为观察和实现参考，精确数值仍回到官方蓝本核对 |
 | `references/browser-recipes.md` | 可复制的 DOM 选择器与操作序列。**代码以这份为准**，SKILL.md 里的片段是精简版 |
 
 ## 维护约定

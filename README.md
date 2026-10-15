@@ -4,7 +4,7 @@
 <sub>An agent skill that turns the Claude UI kit into runnable page code — not a design appreciation.</sub></p>
 
 <p align="center">
-  <a href="SKILL.md"><img alt="version" src="https://img.shields.io/badge/version-2.4.2-D97757?style=flat-square"></a>
+  <a href="SKILL.md"><img alt="version" src="https://img.shields.io/badge/version-2.5.0-D97757?style=flat-square"></a>
   <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-2F855A?style=flat-square"></a>
   <a href="SKILL.md"><img alt="skill" src="https://img.shields.io/badge/type-agent%20skill-4B5563?style=flat-square"></a>
   <a href="references/anthropic-mcp-apps-design.md"><img alt="blueprint" src="https://img.shields.io/badge/blueprint-Claude%20UI%20kit-2563EB?style=flat-square"></a>
@@ -23,14 +23,14 @@
 | 2 | **交付是页面** | CSS 变量 + 字面量的可运行代码、组件代码，或逐层改稿 diff——不是设计赏析，也不是"看着差不多"的临摹 |
 | 3 | **蓝本没覆盖的层要明说** | 官方 UI kit **没有**间距 token、**没有**任何原型动效。要用就写明取自次选蓝本（社区逆向）或标"自定"，不借蓝本的名义写自己的数 |
 
-**当前版本：`2.4.2`** —— 唯一权威出处是 [`SKILL.md`](SKILL.md) frontmatter 的 `version` 字段；改版本号时三处同步，见[维护约定](#维护约定)。
+**当前版本：`2.5.0`** —— 唯一权威出处是 [`SKILL.md`](SKILL.md) frontmatter 的 `version` 字段；改版本号时三处同步，见[维护约定](#维护约定)。
 
 ## 目录
 
 - [能拿到什么](#能拿到什么)
 - [触发场景](#触发场景)
 - [什么是蓝本：它做什么、不做什么](#什么是蓝本它做什么不做什么)
-- [两份蓝本](#两份蓝本)
+- [设计思想与蓝本](#设计思想与蓝本)
 - [工作原理](#工作原理)
 - [怎么用](#怎么用)
 - [目录结构](#目录结构)
@@ -53,6 +53,7 @@
 
 - 要按 Claude 的界面风格**做新页面**或**改造现有页面**（配色、字号、圆角、层级、动效对齐）
 - 用户贴 `figma.com/design/…`、`figma.com/community/file/…` 链接，要求"提取设计细节 / 规范 / token / 设计理念"
+- 用户要学习或应用 Claude 的视觉与交互原则：先读 `references/claude-design-principles.md`
 - 用户贴**网页版**设计系统（Storybook 站点、逆向文档 SPA）——取法与 Figma 相反：**源码 > DOM > 截图**
 - 要校某个具体数值：圆角阶梯、控件高度、双环阴影、行高节奏、字重、弹簧参数
 
@@ -65,12 +66,15 @@
 | 交可运行代码或逐层改稿 diff | 不交"看着差不多"的临摹稿 |
 | 官方与社区来源分列、冲突以官方为准 | 不把社区逆向的数字混进官方表里 |
 
-## 两份蓝本
+## 设计思想与蓝本
+
+设计时先用 [`references/claude-design-principles.md`](references/claude-design-principles.md) 判断视觉层级、边界、动效和会话交互；落精确值时使用下列蓝本，并保留来源边界。
 
 | 文件 | 定位 |
 |---|---|
 | [`references/anthropic-mcp-apps-design.md`](references/anthropic-mcp-apps-design.md) | **主蓝本**：Claude 官方 UI kit 的全套变量 token、组件 Auto layout 实测、官方指南硬规则 |
 | [`references/claude-design-system-storybook.md`](references/claude-design-system-storybook.md) | **次选蓝本**：第三方逆向的 Claude 桌面端 Storybook，收录 7 个基础规范、7 个组件、3 个动效实验。**社区来源，非官方**；只补官方缺的层，与官方冲突时以官方为准 |
+| [`references/claude-design-principles.md`](references/claude-design-principles.md) | **设计思想索引**：把 Claude 官方产品呈现出的设计原则转成可执行问题；参考 `open-claude-ui` 的产品观察和组件例子，具体数值仍以官方 UI kit / 指南为准 |
 | [`references/browser-recipes.md`](references/browser-recipes.md) | 可复制的 DOM 选择器与操作序列，**代码口径的权威来源** |
 
 蓝本里有什么，一层一层对着看：
@@ -127,6 +131,7 @@ Figma 文件 / 网页版设计系统
 SKILL.md                                      # 主文件：拿蓝本 → 建映射表 → 出页面（流程 / 落值口径 / 自检 / 失败降级 / 陷阱清单）
 references/anthropic-mcp-apps-design.md       # 主蓝本：Claude 官方 UI kit 的 token、组件实测、硬规则
 references/claude-design-system-storybook.md  # 次选蓝本：社区逆向的 Claude 桌面端，补几何与动效
+references/claude-design-principles.md        # 设计思想索引：Claude 的视觉层级与交互原则
 references/browser-recipes.md                 # 可复制的 DOM 选择器与操作序列（代码口径的权威来源）
 README.md                                     # 本文件
 CHANGELOG.md                                  # 修订记录
